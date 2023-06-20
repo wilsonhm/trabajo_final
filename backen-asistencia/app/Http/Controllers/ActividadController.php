@@ -58,7 +58,7 @@ class ActividadController extends Controller
         $actividad->horai = $input['horai'];
         $actividad->min_toler = $input['min_toler'];
         $actividad->latitud = $input['latitud'];
-        $actividad->longitud = $input['longitud']; //estado
+        $actividad->longitud = $input['longitud'];
         $actividad->estado = $input['estado'];
         $actividad->evaluar = $input['evaluar'];
         $actividad->user_create = $input['user_create'];

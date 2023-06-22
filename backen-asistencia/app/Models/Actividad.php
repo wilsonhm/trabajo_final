@@ -22,4 +22,8 @@ class Actividad extends Model
     {
         return $this->hasMany(Asisteciapa::class);
     }
+    public function periodo()
+    {
+        return $this->belongsTo(Periodo::class);
+    }
 }

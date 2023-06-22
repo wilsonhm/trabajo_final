@@ -12,14 +12,16 @@ class Persona extends Model
 {
     use HasFactory;
     protected $table = 'personas';
-
-
     public $timestamps = false;
-
-
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'dni', 'codigo', 'nombre', 'apellido_paterno', 'apellido_materno',
+        'telefono', 'genero', 'correo', 'estado', 'escuela_id'
+    ];
 
-
-    protected $fillable = ['id', 'dni', 'nombre', 'apellido_paterno', 'apellido_materno',
-    "telefono",'genero', 'correo'];
+    // Relación de pertenencia a una escuela
+    public function escuela()
+    {
+        return $this->belongsTo(Escuela::class);
+    }
 }

@@ -3,7 +3,13 @@
 //use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\AsisteciapaController;
+use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EscuelaController;
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\FacultadController;
+use App\Http\Controllers\MatriculaController;
+use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\PersonaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +39,13 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/refresh', [AuthController::class, 'refresh']);
    // Route::get('/profile', [AuthController::class, 'userProfile']);
     Route::resource('/act', ActividadController::class);
-    //Route::resource('/asistencia', AsistenciaController::class);
+    Route::resource('/asistencia', AsistenciaController::class);
     Route::resource('/asispa', AsisteciapaController::class);
     Route::resource('/persona', PersonaController::class);
+    Route::resource('/facultad', FacultadController::class);
+    Route::resource('/escuela', EscuelaController::class);
+    Route::resource('/matricula', MatriculaController::class);
+    Route::resource('/periodo', PeriodoController::class);
+    Route::resource('/evento', EventoController::class);
     });
 

@@ -16,31 +16,11 @@ class AsisteciapaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        Log::channel('stderr')->info("Si llega aqui");
-
-        $actividades=Actividad::all();
-        /*$mappedcollection = $actividades->map(function($actividad, $key) {
-        return [
-        'id' => $actividad->id,
-        'periodo_id' => $actividad->periodo_id,
-        'nombre_actividad'=>$actividad->nombre_actividad,
-        'fecha'=>$actividad->fecha,
-        'horai'=>$actividad->horai,
-        'min_toler'=>$actividad->min_toler,
-        'latitud'=>$actividad->latitud,
-        'longitud'=>$actividad->longitud,
-        'estado'=>$actividad->estado,
-        'evaluar'=>$actividad->evaluar,
-        'user_create'=>$actividad->user_create,
-        'asistenciapas'=>$actividad->asisteciapas,
-        ];
-        });*/
         return response()->json(['success' => true,
-        'data' => $mappedcollection,
-        //'data' => Persona::all(),
-        'message' => 'lista de actividades'], 200);
+        'data' => Asisteciapa::all(),
+        'message' => 'lista de asisteenciasPa'], 200);
     }
 
     /**
@@ -56,8 +36,16 @@ class AsisteciapaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Asisteciapa::create($input);
+
+        return response()->json([
+            'success' => true,
+            'data' => Asisteciapa::all(),
+            'message' => 'Lista de asistencias'
+        ], 200);
     }
+
 
     /**
      * Display the specified resource.
@@ -80,14 +68,40 @@ class AsisteciapaController extends Controller
      */
     public function update(Request $request, Asisteciapa $asisteciapa)
     {
-        //
+        $input = $request->all();
+        $asisteciapa->fecha = $input['fecha'];
+        $asisteciapa->hora_reg = $input['hora_reg'];
+        $asisteciapa->latituda = $input['latituda'];
+        $asisteciapa->longituda = $input['longituda'];
+        $asisteciapa->tipo = $input['tipo'];
+        $asisteciapa->calificacion = $input['calificacion'];
+        $asisteciapa->cui = $input['cui'];
+        $asisteciapa->tipo_cui = $input['tipo_cui'];
+        $asisteciapa->actividad_id = $input['actividad_id'];
+        $asisteciapa->save();
+
+        $asistecias = Asisteciapa::all();
+        return response()->json([
+            'success' => true,
+            'data' => $asistecias,
+            'message' => 'Lista de asistencias'
+        ], 200);
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Asisteciapa $asisteciapa)
     {
-        //
+        $asisteciapa->delete();
+
+        $asistecias = Asisteciapa::all();
+        return response()->json([
+            'success' => true,
+            'data' => $asistecias,
+            'message' => 'Lista de asistencias'
+        ], 200);
     }
+
 }

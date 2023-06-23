@@ -18,12 +18,13 @@ class PersonaController extends Controller
 
 
        }
-    public function index(Request $request)
-    {
+       public function index(Request $request)
+       {
         return response()->json(['success' => true,
         'data' => Persona::all(),
         'message' => 'lista de personas'], 200);
-    }
+       }
+
 
 
     /**
@@ -73,23 +74,25 @@ class PersonaController extends Controller
     {
         $input = $request->all();
         $persona->dni = $input['dni'];
+        $persona->codigo = $input['codigo'];
         $persona->nombre = $input['nombre'];
         $persona->apellido_paterno = $input['apellido_paterno'];
         $persona->apellido_materno = $input['apellido_materno'];
         $persona->telefono = $input['telefono'];
-        $persona->correo = $input['correo'];
         $persona->genero = $input['genero'];
+        $persona->correo = $input['correo'];
+        $persona->estado = $input['estado'];
+        $persona->escuela_id = $input['escuela_id'];
         $persona->save();
 
-
-        return response()->json(['success' => true,
-
-
-        'data' => Persona::all(),
-        'message' => 'Lista de personas'], 200);
-
-
+        $personas = Persona::with('escuela')->get();
+        return response()->json([
+            'success' => true,
+            'data' => $personas,
+            'message' => 'Lista de personas'
+        ], 200);
     }
+
 
 
     /**

@@ -10,10 +10,19 @@ class EscuelaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function __construct() {
+        $this->middleware('auth:api');
+            }
+
+    public function index(Request $request)
     {
-        //
+    return response()->json([
+    'success' => true,
+    'data' => Escuela::all(),
+    'message' => 'Lista de escuelas'
+    ], 200);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +37,14 @@ class EscuelaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Escuela::create($input);
+
+        return response()->json([
+            'success' => true,
+            'data' => Escuela::all(),
+            'message' => 'Lista de escuelas'
+        ], 200);
     }
 
     /**
@@ -52,14 +68,47 @@ class EscuelaController extends Controller
      */
     public function update(Request $request, Escuela $escuela)
     {
-        //
+        $input = $request->all();
+        $escuela->nombreeap = $input['nombreeap'];
+        $escuela->estado = $input['estado'];
+        $escuela->inicaleseap = $input['inicaleseap'];
+        $escuela->facultad_id = $input['facultad_id'];
+        $escuela->save();
+
+        $escuelas = Escuela::all();
+        return response()->json([
+            'success' => true,
+            'data' => $escuelas,
+            'message' => 'Lista de escuelas'
+        ], 200);
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Escuela $escuela)
     {
-        //
+        $escuela->delete();
+
+        $escuelas = Escuela::all();
+        return response()->json([
+            'success' => true,
+            'data' => $escuelas,
+            'message' => 'Lista de escuelas'
+        ], 200);
+    }
+    public function sendError($error, $errorMessages = [], $code = 404)
+    {
+        $response = [
+            'success' => false,
+            'message' => $error,
+        ];
+
+        if (!empty($errorMessages)) {
+            $response['data'] = $errorMessages;
+        }
+
+        return response()->json($response, $code);
     }
 }

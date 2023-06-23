@@ -10,10 +10,18 @@ class PeriodoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    public function __construct() {
+        $this->middleware('auth:api');
+            }
+            public function index(Request $request)
+            {
+                return response()->json([
+                    'success' => true,
+                    'data' => Periodo::all(),
+                    'message' => 'Lista de periodos'
+                ], 200);
+            }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +36,14 @@ class PeriodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Periodo::create($input);
+
+        return response()->json([
+            'success' => true,
+            'data' => Periodo::all(),
+            'message' => 'Lista de periodos'
+        ], 200);
     }
 
     /**
@@ -52,14 +67,41 @@ class PeriodoController extends Controller
      */
     public function update(Request $request, Periodo $periodo)
     {
-        //
+        $input = $request->all();
+        $periodo->nombre = $input['nombre'];
+        $periodo->estado = $input['estado'];
+        $periodo->save();
+
+        return response()->json([
+            'success' => true,
+            'data' => $periodo,
+            'message' => 'Periodo actualizado exitosamente'
+        ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Periodo $periodo)
     {
-        //
+        $periodo->delete();
+
+        $periodos = Periodo::all();
+        return response()->json([
+            'success' => true,
+            'data' => $periodos,
+            'message' => 'Lista de periodos'
+        ], 200);
+    }
+
+    public function sendError($error, $errorMessages = [], $code = 404)
+    {
+        $response = [
+            'success' => false,
+            'message' => $error,
+        ];
+
+        if (!empty($errorMessages)) {
+            $response['data'] = $errorMessages;
+        }
+
+        return response()->json($response, $code);
     }
 }

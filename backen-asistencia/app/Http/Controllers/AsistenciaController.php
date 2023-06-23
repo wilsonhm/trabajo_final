@@ -10,10 +10,20 @@ class AsistenciaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+
+     public function __construct() {
+        $this->middleware('auth:api');
+            }
+    public function index(Request $request)
+{
+    $asistencias = Asistencia::all();
+    return response()->json([
+        'success' => true,
+        'data' => $asistencias,
+        'message' => 'Lista de asistencias'
+    ], 200);
+}
+
 
     /**
      * Show the form for creating a new resource.

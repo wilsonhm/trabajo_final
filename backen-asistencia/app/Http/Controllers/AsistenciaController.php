@@ -38,8 +38,16 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Asistencia::create($input);
+
+        return response()->json([
+            'success' => true,
+            'data' => Asistencia::all(),
+            'message' => 'Lista de asistencias'
+        ], 200);
     }
+
 
     /**
      * Display the specified resource.
@@ -60,16 +68,60 @@ class AsistenciaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Asistencia $asistencia)
+    public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $asistencia = Asistencia::find($id);
+
+        if (!$asistencia) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Asistencia no encontrada'
+            ], 404);
+        }
+
+        $asistencia->fecha = $input['fecha'];
+        $asistencia->hora = $input['hora'];
+        $asistencia->latituda = $input['latituda'];
+        $asistencia->longituda = $input['longituda'];
+        $asistencia->tipo = $input['tipo'];
+        $asistencia->tipo_reg = $input['tipo_reg'];
+        $asistencia->id_matricula = $input['id_matricula'];
+        $asistencia->id_evento = $input['id_evento'];
+        $asistencia->id_persona = $input['id_persona'];
+        $asistencia->calificacion = $input['calificacion'];
+        $asistencia->offlinex = $input['offlinex'];
+        $asistencia->save();
+
+        return response()->json([
+            'success' => true,
+            'data' => $asistencia,
+            'message' => 'Asistencia actualizada exitosamente'
+        ], 200);
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Asistencia $asistencia)
+    public function destroy($id)
     {
-        //
+        $asistencia = Asistencia::find($id);
+
+        if (!$asistencia) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Asistencia no encontrada'
+            ], 404);
+        }
+
+        $asistencia->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Asistencia eliminada exitosamente'
+        ], 200);
     }
+
 }

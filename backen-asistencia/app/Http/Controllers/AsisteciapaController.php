@@ -66,9 +66,18 @@ class AsisteciapaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Asisteciapa $asisteciapa)
+    public function update(Request $request, $id)
     {
         $input = $request->all();
+        $asisteciapa = Asisteciapa::find($id);
+
+        if (!$asisteciapa) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Asisteciapa no encontrada'
+            ], 404);
+        }
+
         $asisteciapa->fecha = $input['fecha'];
         $asisteciapa->hora_reg = $input['hora_reg'];
         $asisteciapa->latituda = $input['latituda'];
@@ -80,28 +89,36 @@ class AsisteciapaController extends Controller
         $asisteciapa->actividad_id = $input['actividad_id'];
         $asisteciapa->save();
 
-        $asistecias = Asisteciapa::all();
         return response()->json([
             'success' => true,
-            'data' => $asistecias,
-            'message' => 'Lista de asistencias'
+            'data' => $asisteciapa,
+            'message' => 'Asisteciapa actualizada exitosamente'
         ], 200);
     }
+
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Asisteciapa $asisteciapa)
+    public function destroy($id)
     {
+        $asisteciapa = Asisteciapa::find($id);
+
+        if (!$asisteciapa) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Asisteciapa no encontrada'
+            ], 404);
+        }
+
         $asisteciapa->delete();
 
-        $asistecias = Asisteciapa::all();
         return response()->json([
             'success' => true,
-            'data' => $asistecias,
-            'message' => 'Lista de asistencias'
+            'message' => 'Asisteciapa eliminada exitosamente'
         ], 200);
     }
+
 
 }

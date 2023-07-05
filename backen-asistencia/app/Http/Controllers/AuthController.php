@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -77,6 +78,8 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
+        $roles = Role::whereIn('roleName', ['admin', 'estudiante', 'user'])->get();
+        $user->roles()->attach($roles);
         return response()->json([
             'status' => true,
             'message' => 'User successfully registered',
@@ -130,6 +133,9 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+        $user = auth('api')->user();
+        $user->load('roles'); // Carga la relación "roles"
+        $roles = $user->roles->pluck('roleName')->toArray();
         Log::channel('stderr')->info("token");
         $minutes = auth('api')->factory()->getTTL() * 60;
         $timestamp = now()->addMinute($minutes);
@@ -139,7 +145,8 @@ class AuthController extends Controller
             'message' => 'Login successful',
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_at' => $expires_at
+            'expires_at' => $expires_at,
+            'roles' => $roles
         ], 200);
     }
 }

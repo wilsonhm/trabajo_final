@@ -83,7 +83,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       setState(() {
         screenView = MainPersona();
       });
-            } else if (drawerIndex == DrawerIndex.Testing) {
+            } else if (drawerIndex == DrawerIndex.Share) {
       setState(() {
         screenView = MainMatricula();
       });
@@ -91,7 +91,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       setState(() {
         screenView = MainFacultadF();
       });
-            } else if (drawerIndex == DrawerIndex.Share) {
+            } else if (drawerIndex == DrawerIndex.FeedBack) {
       setState(() {
         screenView = MainEscuelaB();
       });

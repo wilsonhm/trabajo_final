@@ -11,6 +11,6 @@ class PersonaLoadedState extends PersonaState {
 }
 
 class PersonaError extends PersonaState {
-  Error er;
-  PersonaError(this.er);
+  Error e;
+  PersonaError(this.e);
 }

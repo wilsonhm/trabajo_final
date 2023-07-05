@@ -19,11 +19,21 @@ class PersonaRepository {
   }
 
   Future<List<PersonaModelo>> getPersonas() async {
+    print('llego');
     final database = await conection();
     final personaDao = database.personaDao;
+    print('llego');
     if (await isConected()) {
-      var data = await personaApi!.getPersona(TokenUtil.TOKEN).then((value) => value.data);
-      data.forEach((el) async {
+          print('llego2');
+      var dats;
+      try {
+        dats = await personaApi!.getPersona(TokenUtil.TOKEN).then((value){print('sdaad');value.data;} );
+      print('dats');
+      } catch (e) {
+        print(e.toString());
+      }
+      
+      dats.forEach((el) async {
         await personaDao.insertarPersona(PersonaModelo(
           id: el.id,
           dni: el.dni,
@@ -38,7 +48,7 @@ class PersonaRepository {
           escuelaId: el.escuelaId,
         ));
       });
-      return data;
+      return dats;
     } else {
       return await personaDao.listarPersona();
     }

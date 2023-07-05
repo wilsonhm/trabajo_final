@@ -48,8 +48,8 @@ class PersonaBloc extends Bloc<PersonaEvent, PersonaState> {
           emit(PersonaLoadingState());
           List<PersonaModelo> personaList = await _personaRepository.getPersonas();
           emit(PersonaLoadedState(personaList));
-        } catch(er){
-          emit(PersonaError(er as Error));
+        } catch(e){
+          emit(PersonaError(e as Error));
         }
       }
     });

@@ -15,70 +15,63 @@ class PersonaForm extends StatefulWidget {
 
 class _PersonaFormState extends State<PersonaForm> {
   late int _id = 0;
-  late int _dni = 0;
-  late String _codigo = "";
-  late String _nombre = "";
-  late String _apellidoPaterno = "";
-  late String _apellidoMaterno = "";
-  late String _telefono = "";
-  late String _genero = "";
-  late String _correo = "";
+  late int _dni;
+  late String _codigo;
+  late String _nombre;
+  late String _apellidoPaterno;
+  late String _apellidoMaterno;
+  late String _telefono;
+  late String _genero;
+  late String _correo;
   late String _estado = "D";
-  late int _escuelaId = 0;
+  late int _escuelaId;
 
   var _data = [];
   List<Map<String, String>> lista = [
     {'value': 'A', 'display': 'Activo'},
-    {'value': 'D', 'display': 'Desactivo'}
+    {'value': 'D', 'display': 'Inactivo'}
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    print("ver: ${lista.map((item) => item['value']).toList()}");
-    print("verv: ${lista.map((item) => item['display']).toList()}");
-  }
 
   final _formKey = GlobalKey<FormState>();
 
-  void capturaDni(valor) {
-    this._dni = valor;
+  void capturaDni(String valor) {
+    _dni = int.parse(valor);
   }
 
-  void capturaCodigo(valor) {
-    this._codigo = valor;
+  void capturaCodigo(String valor) {
+    _codigo = valor;
   }
 
-  void capturaNombre(valor) {
-    this._nombre = valor;
+  void capturaNombre(String valor) {
+    _nombre = valor;
   }
 
-  void capturaApellidoPaterno(valor) {
-    this._apellidoPaterno = valor;
+  void capturaApellidoPaterno(String valor) {
+    _apellidoPaterno = valor;
   }
 
-  void capturaApellidoMaterno(valor) {
-    this._apellidoMaterno = valor;
+  void capturaApellidoMaterno(String valor) {
+    _apellidoMaterno = valor;
   }
 
-  void capturaTelefono(valor) {
-    this._telefono = valor;
+  void capturaTelefono(String valor) {
+    _telefono = valor;
   }
 
-  void capturaGenero(valor) {
-    this._genero = valor;
+  void capturaGenero(String valor) {
+    _genero = valor;
   }
 
-  void capturaCorreo(valor) {
-    this._correo = valor;
+  void capturaCorreo(String valor) {
+    _correo = valor;
   }
 
-  void capturaEstado(valor) {
-    this._estado = valor;
+  void capturaEstado(String valor) {
+    _estado = valor;
   }
 
-  void capturaEscuelaId(valor) {
-    this._escuelaId = valor;
+  void capturaEscuelaId(int valor) {
+    _escuelaId = valor;
   }
 
   @override
@@ -203,20 +196,16 @@ class _PersonaFormState extends State<PersonaForm> {
   }
 
   Widget _buildDatoLista(
-      Function obtValor, _dato, String label, List<dynamic> listaDato) {
+      Function obtValor, String dato, String label, List<dynamic> listaDato) {
     return DropDownFormField(
       titleText: label,
       hintText: 'Seleccione',
-      value: _dato,
+      value: dato,
       onSaved: (value) {
-        setState(() {
-          obtValor(value);
-        });
+        obtValor(value);
       },
       onChanged: (value) {
-        setState(() {
-          obtValor(value);
-        });
+        obtValor(value);
       },
       dataSource: listaDato,
       textField: 'display',

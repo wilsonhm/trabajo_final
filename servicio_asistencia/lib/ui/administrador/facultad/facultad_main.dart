@@ -142,7 +142,7 @@ class _FacultadUIState extends State<FacultadUI> {
                       ),
                       leading: CircleAvatar(
                         backgroundImage:
-                            AssetImage("assets/imagen/faculty-icon.png"),
+                            AssetImage("assets/imagen/man-icon.png"),
                       ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,

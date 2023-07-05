@@ -141,7 +141,7 @@ class _PeriodoUIState extends State<PeriodoUI> {
                       ),
                       leading: CircleAvatar(
                         backgroundImage:
-                            AssetImage("assets/imagen/calendar-icon.png"),
+                            AssetImage("assets/imagen/man-icon.png"),
                       ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,

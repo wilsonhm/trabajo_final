@@ -21,11 +21,11 @@ return new class extends Migration
             $table->string('tipo_reg', 12);
             $table->unsignedBigInteger('id_matricula');
             $table->unsignedBigInteger('id_evento');
-            $table->string('id_persona', 10);
+            $table->unsignedBigInteger('id_persona');
             $table->integer('calificacion');
-            $table->string('offlinex', 5);
             $table->foreign('id_matricula')->references('id')->on('matriculas')->onDelete('cascade');
             $table->foreign('id_evento')->references('id')->on('eventos')->onDelete('cascade');
+            $table->foreign('id_persona')->references('id')->on('personas')->onDelete('cascade');
             //$table->timestamps();
         });
     }

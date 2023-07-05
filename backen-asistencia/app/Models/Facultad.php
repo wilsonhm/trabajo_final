@@ -11,7 +11,7 @@ class Facultad extends Model
     protected $table = 'facultads';
     public $timestamps = false;
     protected $primaryKey = 'id';
-    protected $fillable = ['nombrefac', 'estado', 'inicales'];
+    protected $fillable = ['id','nombrefac', 'estado', 'inicales'];
 
     // Relación de uno a muchos con la tabla de escuelas
     public function escuelas()

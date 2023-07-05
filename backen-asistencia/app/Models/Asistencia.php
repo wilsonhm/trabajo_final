@@ -12,8 +12,8 @@ class Asistencia extends Model
     public $timestamps = false;
     protected $primaryKey = 'id';
     protected $fillable = [
-        'fecha', 'hora', 'latituda', 'longituda', 'tipo', 'tipo_reg',
-        'id_matricula', 'id_evento', 'id_persona', 'calificacion', 'offlinex'
+        'id','fecha', 'hora', 'latituda', 'longituda', 'tipo', 'tipo_reg',
+        'id_matricula', 'id_evento', 'id_persona', 'calificacion',
     ];
 
     // Relación de pertenencia a una matrícula
@@ -26,5 +26,9 @@ class Asistencia extends Model
     public function evento()
     {
         return $this->belongsTo(Evento::class, 'id_evento');
+    }
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class, 'id_persona');
     }
 }

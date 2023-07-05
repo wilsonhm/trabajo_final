@@ -15,7 +15,7 @@ class Persona extends Model
     public $timestamps = false;
     protected $primaryKey = 'id';
     protected $fillable = [
-        'dni', 'codigo', 'nombre', 'apellido_paterno', 'apellido_materno',
+        'id','dni', 'codigo', 'nombre', 'apellido_paterno', 'apellido_materno',
         'telefono', 'genero', 'correo', 'estado', 'escuela_id'
     ];
 

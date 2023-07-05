@@ -11,7 +11,7 @@ class Periodo extends Model
     protected $table = 'periodos';
     public $timestamps = false;
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre', 'estado'];
+    protected $fillable = ['id','nombre', 'estado'];
 
     // Relación de uno a muchos con la tabla de matriculas
     public function matriculas()

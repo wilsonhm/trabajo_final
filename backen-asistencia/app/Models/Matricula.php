@@ -11,7 +11,7 @@ class Matricula extends Model
     protected $table = 'matriculas';
     public $timestamps = false;
     protected $primaryKey = 'id';
-    protected $fillable = ['estado', 'periodo_id', 'persona_id'];
+    protected $fillable = ['id','estado', 'periodo_id', 'persona_id'];
 
     // Relación de pertenencia a un periodo
     public function periodo()

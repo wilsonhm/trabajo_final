@@ -11,7 +11,7 @@ class Escuela extends Model
     protected $table = 'escuelas';
     public $timestamps = false;
     protected $primaryKey = 'id';
-    protected $fillable = ['nombreeap', 'estado', 'inicaleseap', 'facultad_id'];
+    protected $fillable = ['id','nombreeap', 'estado', 'inicaleseap', 'facultad_id'];
 
     // Relación de pertenencia a una facultad
     public function facultad()

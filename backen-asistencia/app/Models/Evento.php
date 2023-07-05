@@ -12,8 +12,8 @@ class Evento extends Model
     public $timestamps = false;
     protected $primaryKey = 'id';
     protected $fillable = [
-        'nom_evento', 'fecha', 'horai', 'min_toler', 'latitud', 'longitud',
-        'estado', 'evaluar', 'perfil_evento', 'offline', 'periodo_id'
+        'id','nom_evento', 'fecha', 'horai', 'min_toler', 'latitud', 'longitud',
+        'estado', 'evaluar', 'perfil_evento', 'periodo_id'
     ];
 
     // Relación de pertenencia a un periodo

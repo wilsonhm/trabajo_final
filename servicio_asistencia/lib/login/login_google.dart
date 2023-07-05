@@ -3,6 +3,7 @@ import 'package:servicio_asistencia/comp/Button.dart';
 import 'package:servicio_asistencia/drawer/navigation_home_screen.dart';
 import 'package:servicio_asistencia/login/sign_in.dart';
 import 'package:servicio_asistencia/models/UsuarioModelo.dart';
+import 'package:servicio_asistencia/util/RoleUtil.dart';
 import 'package:servicio_asistencia/util/TokenUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -137,6 +138,9 @@ class _LoginPageState extends State<LoginPage> {
                     (value) {
                       token = value.tokenType + " " + value.accessToken;
                       prefs.setString("token", token);
+                      final roles = value.roles ;
+                      prefs.setString("roles", roles.join(","));
+                      RoleUtil.ROLE = roles;
                       TokenUtil.TOKEN = token;
                       ingreso = true;
                       if (ingreso == true) {

@@ -4,6 +4,7 @@ import 'package:servicio_asistencia/login/login_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:servicio_asistencia/login/sign_in.dart';
+import 'package:servicio_asistencia/util/RoleUtil.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -27,6 +28,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
     setDrawerListArray();
     super.initState();
   }
+  var txtrol=RoleUtil.ROLE;
 
   void setDrawerListArray() {
     drawerList = <DrawerList>[
@@ -138,7 +140,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8, left: 4),
                     child: Text(
-                      (name==null?"Anonimo":name)! + (" ") + (email==null?"Anomim":email)!,
+                      (name==null?"${txtrol}":name)! + (" ") + (email==null?"Anomim":email)!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,

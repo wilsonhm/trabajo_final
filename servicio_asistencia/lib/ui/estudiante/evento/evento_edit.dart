@@ -8,12 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class EventoForm extends StatefulWidget {
+class EventoFormEdit extends StatefulWidget {
+   EventoModelo modelR;
+   EventoFormEdit({required this.modelR}):super();
   @override
-  _EventoFormState createState() => _EventoFormState();
+  _EventoFormEditState createState() => _EventoFormEditState();
 }
 
-class _EventoFormState extends State<EventoForm> {
+class _EventoFormEditState extends State<EventoFormEdit> {
   late int _id = 0;
   late String _nomEvento = "";
   late DateTime _fecha = DateTime.now();

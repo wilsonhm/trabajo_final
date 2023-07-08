@@ -1,4 +1,4 @@
-/*import 'package:servicio_asistencia/bloc/evento/evento_bloc.dart';
+import 'package:servicio_asistencia/bloc/evento/evento_bloc.dart';
 import 'package:servicio_asistencia/comp/DropDownFormField.dart';
 import 'package:servicio_asistencia/models/evento/EventoModelo.dart';
 import 'package:servicio_asistencia/theme/AppTheme.dart';
@@ -133,7 +133,7 @@ class _EventoFormState extends State<EventoForm> {
                             EventoModelo mp = EventoModelo(
                               id: _id,
                               nom_evento: _nom_evento,
-                              fecha:  _fecha.value.text,
+                              fecha:  _fecha,
                               horai: _horai,
                               min_toler: _min_toler,
                               latitud: _latitud,
@@ -273,4 +273,4 @@ class _EventoFormState extends State<EventoForm> {
       },
     );
   }
-}*/
+}

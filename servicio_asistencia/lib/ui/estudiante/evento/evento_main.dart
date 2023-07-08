@@ -54,7 +54,7 @@ class _EventoUIState extends State< EventoUI> {
       theme: AppTheme.themeData,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Lista de Periodos'),
+          title: Text('Lista de Eventos'),
           automaticallyImplyLeading: false,
           centerTitle: true,
           actions: <Widget>[
@@ -77,7 +77,7 @@ class _EventoUIState extends State< EventoUI> {
                   print("Si funciona 2");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PeriodoForm()),
+                    MaterialPageRoute(builder: (context) => EventoForm()),
                   ).then(onGoBack);
                 },
                 child: Icon(Icons.add_box_sharp),
@@ -166,7 +166,7 @@ class _EventoUIState extends State< EventoUI> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                       EventoFormEdit(modelR: periodo),
+                                       EventoFormEdit(modelR: evento),
                                 ),
                               ).then(onGoBack);
                             },

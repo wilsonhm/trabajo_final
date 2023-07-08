@@ -18,7 +18,7 @@ class PersonaRepository {
     return await $FloorAppDatabase.databaseBuilder("app_database.db").build();
   }
 
-  Future<List<PersonaModelo>> getPersonas() async {
+  Future<List<PersonaModelo>> getPersona() async {
     print('llego');
     final database = await conection();
     final personaDao = database.personaDao;

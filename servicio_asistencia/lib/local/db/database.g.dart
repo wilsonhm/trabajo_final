@@ -1108,7 +1108,7 @@ class _$PersonaDao extends PersonaDao {
     return _queryAdapter.queryList('SELECT * FROM persona',
         mapper: (Map<String, Object?> row) => PersonaModelo(
             id: row['id'] as int,
-            dni: row['dni'] as int,
+            dni: row['dni'] as String,
             codigo: row['codigo'] as String,
             nombre: row['nombre'] as String,
             apellidoPaterno: row['apellido_paterno'] as String,
@@ -1125,7 +1125,7 @@ class _$PersonaDao extends PersonaDao {
     return _queryAdapter.queryStream('SELECT * FROM persona WHERE id = ?1',
         mapper: (Map<String, Object?> row) => PersonaModelo(
             id: row['id'] as int,
-            dni: row['dni'] as int,
+            dni: row['dni'] as String,
             codigo: row['codigo'] as String,
             nombre: row['nombre'] as String,
             apellidoPaterno: row['apellido_paterno'] as String,

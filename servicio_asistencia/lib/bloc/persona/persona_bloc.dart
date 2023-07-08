@@ -19,7 +19,7 @@ class PersonaBloc extends Bloc<PersonaEvent, PersonaState> {
       if(event is ListarPersonaEvent){
         emit(PersonaLoadingState());
         try{
-          List<PersonaModelo> personaList = await _personaRepository.getPersonas();
+          List<PersonaModelo> personaList = await _personaRepository.getPersona();
           emit(PersonaLoadedState(personaList));
         } catch(e){
           emit(PersonaError(e as Error));
@@ -28,7 +28,7 @@ class PersonaBloc extends Bloc<PersonaEvent, PersonaState> {
         try{
           await _personaRepository.createPersona(event.persona);
           emit(PersonaLoadingState());
-          List<PersonaModelo> personaList = await _personaRepository.getPersonas();
+          List<PersonaModelo> personaList = await _personaRepository.getPersona();
           emit(PersonaLoadedState(personaList));
         } catch(e){
           emit(PersonaError(e as Error));
@@ -37,7 +37,7 @@ class PersonaBloc extends Bloc<PersonaEvent, PersonaState> {
         try{
           await _personaRepository.updatePersona(event.persona.id, event.persona);
           emit(PersonaLoadingState());
-          List<PersonaModelo> personaList = await _personaRepository.getPersonas();
+          List<PersonaModelo> personaList = await _personaRepository.getPersona();
           emit(PersonaLoadedState(personaList));
         } catch(e){
           emit(PersonaError(e as Error));
@@ -46,7 +46,7 @@ class PersonaBloc extends Bloc<PersonaEvent, PersonaState> {
         try{
           await _personaRepository.deletePersona(event.persona.id);
           emit(PersonaLoadingState());
-          List<PersonaModelo> personaList = await _personaRepository.getPersonas();
+          List<PersonaModelo> personaList = await _personaRepository.getPersona();
           emit(PersonaLoadedState(personaList));
         } catch(e){
           emit(PersonaError(e as Error));

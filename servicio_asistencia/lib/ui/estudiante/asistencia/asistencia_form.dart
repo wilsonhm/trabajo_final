@@ -1,83 +1,78 @@
-import 'package:servicio_asistencia/bloc/persona/persona_bloc.dart';
+/*import 'package:servicio_asistencia/bloc/asistencia/asistencia_bloc.dart';
 import 'package:servicio_asistencia/comp/DropDownFormField.dart';
-import 'package:servicio_asistencia/models/persona/PersonaModelo.dart';
+import 'package:servicio_asistencia/models/asistencia/AsistenciaModelo.dart';
 import 'package:servicio_asistencia/theme/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PersonaForm extends StatefulWidget {
+class AsistenciaForm extends StatefulWidget {
   @override
-  _PersonaFormState createState() => _PersonaFormState();
+  _AsistenciaFormState createState() => _AsistenciaFormState();
 }
 
-class _PersonaFormState extends State<PersonaForm> {
+class _AsistenciaFormState extends State<AsistenciaForm> {
   late int _id = 0;
-  late int _dni = 0;
-  late String _codigo = "";
-  late String _nombre = "";
-  late String _apellidoPaterno = "";
-  late String _apellidoMaterno = "";
-  late String _telefono = "";
-  late String _genero = "";
-  late String _correo = "";
-  late String _estado = "D";
-  late int _escuelaId = 0;
+  late String _fecha;
+  late String _hora;
+  late String _latituda;
+  late String _longituda;
+  late String _tipo_reg;
+  late int _matriculaId;
+  late int _eventoId;
+  late int _personaId;
+  late String _calificacion;
+  
 
   var _data = [];
   List<Map<String, String>> lista = [
     {'value': 'A', 'display': 'Activo'},
-    {'value': 'D', 'display': 'Desactivo'}
+    {'value': 'D', 'display': 'Inactivo'}
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    print("ver: ${lista.map((item) => item['value']).toList()}");
-    print("verv: ${lista.map((item) => item['display']).toList()}");
-  }
 
   final _formKey = GlobalKey<FormState>();
 
-  void capturaDni(valor) {
-    this._dni = valor;
+  void capturaDni(String valor) {
+    _hora =valor;
   }
 
-  void capturaCodigo(valor) {
-    this._codigo = valor;
+  void capturaCodigo(String valor) {
+    _fecha = valor;
   }
 
-  void capturaNombre(valor) {
-    this._nombre = valor;
+  void capturaNombre(String valor) {
+    _latituda = valor;
   }
 
-  void capturaApellidoPaterno(valor) {
-    this._apellidoPaterno = valor;
+  void capturaApellidoPaterno(String valor) {
+    _longituda = valor;
   }
 
-  void capturaApellidoMaterno(valor) {
-    this._apellidoMaterno = valor;
+  void capturaApellidoMaterno(String valor) {
+    _tipo_reg = valor;
   }
 
-  void capturaTelefono(valor) {
-    this._telefono = valor;
+  void capturaTelefono(String valor) {
+    _telefono = valor;
   }
 
-  void capturaGenero(valor) {
-    this._genero = valor;
+  void capturaGenero(String valor) {
+    _genero = valor;
   }
 
-  void capturaCorreo(valor) {
-    this._correo = valor;
+  void capturaCorreo(String valor) {
+    _correo = valor;
   }
 
-  void capturaEstado(valor) {
-    this._estado = valor;
-  }
 
-  void capturaEscuelaId(valor) {
-    this._escuelaId = valor;
+
+  void capturaPersonaId(int valor) {
+    _personaId = valor;
+  }
+    void capturaEstado(String valor) {
+    _estado = valor;
   }
 
   @override
@@ -98,7 +93,7 @@ class _PersonaFormState extends State<PersonaForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                _buildDatoEntero(capturaDni, "DNI:"),
+                _buildDatoCadena(capturaDni, "DNI:"),
                 _buildDatoCadena(capturaCodigo, "Código:"),
                 _buildDatoCadena(capturaNombre, "Nombre:"),
                 _buildDatoCadena(capturaApellidoPaterno, "Apellido Paterno:"),
@@ -128,18 +123,18 @@ class _PersonaFormState extends State<PersonaForm> {
                               ),
                             );
                             _formKey.currentState!.save();
-                            PersonaModelo mp = PersonaModelo(
+                            AsistenciaModelo mp = AsistenciaModelo(
                               id: _id,
-                              dni: _dni,
-                              codigo: _codigo,
-                              nombre: _nombre,
-                              apellidoPaterno: _apellidoPaterno,
-                              apellidoMaterno: _apellidoMaterno,
-                              telefono: _telefono,
-                              genero: _genero,
-                              correo: _correo,
-                              estado: _estado,
-                              escuelaId: _escuelaId,
+                              fecha: _dni,
+                              hora: _codigo,
+                              latituda: _nombre,
+                              longituda: _apellidoPaterno,
+                              tipo: _apellidoMaterno,
+                              tipoReg: _telefono,
+                              idMatricula: _genero,
+                              idEvento: _correo,
+                              idPersona: _estado,
+                              calificacion: _escuelaId,
                             );
                             final prefs =
                                 await SharedPreferences.getInstance();
@@ -202,24 +197,20 @@ class _PersonaFormState extends State<PersonaForm> {
   }
 
   Widget _buildDatoLista(
-      Function obtValor, _dato, String label, List<dynamic> listaDato) {
+      Function obtValor, String dato, String label, List<dynamic> listaDato) {
     return DropDownFormField(
       titleText: label,
       hintText: 'Seleccione',
-      value: _dato,
+      value: dato,
       onSaved: (value) {
-        setState(() {
-          obtValor(value);
-        });
+        obtValor(value);
       },
       onChanged: (value) {
-        setState(() {
-          obtValor(value);
-        });
+        obtValor(value);
       },
       dataSource: listaDato,
       textField: 'display',
       valueField: 'value',
     );
   }
-}
+}*/

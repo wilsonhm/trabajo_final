@@ -15,7 +15,7 @@ class PersonaForm extends StatefulWidget {
 
 class _PersonaFormState extends State<PersonaForm> {
   late int _id = 0;
-  late int _dni;
+  late String _dni;
   late String _codigo;
   late String _nombre;
   late String _apellidoPaterno;
@@ -35,7 +35,7 @@ class _PersonaFormState extends State<PersonaForm> {
   final _formKey = GlobalKey<FormState>();
 
   void capturaDni(String valor) {
-    _dni = int.parse(valor);
+    _dni = valor;
   }
 
   void capturaCodigo(String valor) {
@@ -135,8 +135,7 @@ class _PersonaFormState extends State<PersonaForm> {
                               estado: _estado,
                               escuelaId: _escuelaId,
                             );
-                            final prefs =
-                                await SharedPreferences.getInstance();
+                            final prefs = await SharedPreferences.getInstance();
                             BlocProvider.of<PersonaBloc>(context)
                                 .add(CreatePersonaEvent(mp));
                             Navigator.pop(context);

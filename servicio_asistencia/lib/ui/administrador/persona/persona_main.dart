@@ -20,16 +20,16 @@
             debugShowCheckedModeBanner: false,
             themeMode: AppTheme.useLightMode?ThemeMode.light:ThemeMode.dark,
             theme: AppTheme.themeData,
-            home: EscuelaUI(),
+            home: PersonaUI(),
           ));
     }
   }
-  class EscuelaUI extends StatefulWidget {
+  class PersonaUI extends StatefulWidget {
     @override
-    _EscuelaUIState createState() => _EscuelaUIState();
+    _PersonaUIState createState() => _PersonaUIState();
   }
 
-  class _EscuelaUIState extends State<EscuelaUI> {
+  class _PersonaUIState extends State<PersonaUI> {
     //ApiCovid apiService;
     var api;
     @override

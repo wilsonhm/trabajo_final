@@ -19,7 +19,7 @@ class _PersonaFormEditState extends State<PersonaFormEdit> {
   PersonaModelo modelP;
   _PersonaFormEditState({required this.modelP}):super();
   late int _id = 0;
-  late int _dni = 0;
+  late String _dni ="";
   late String _codigo = "";
   late String _nombre = "";
   late String _apellidoPaterno = "";

@@ -1,4 +1,4 @@
-/*import 'package:servicio_asistencia/bloc/evento/evento_bloc.dart';
+import 'package:servicio_asistencia/bloc/evento/evento_bloc.dart';
 import 'package:servicio_asistencia/comp/DropDownFormField.dart';
 import 'package:servicio_asistencia/models/evento/EventoModelo.dart';
 import 'package:servicio_asistencia/theme/AppTheme.dart';
@@ -302,4 +302,3 @@ class _EventoFormState extends State<EventoForm> {
     this._periodoId = valor;
   }
 }
-*/

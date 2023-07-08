@@ -4,7 +4,7 @@ import 'package:floor/floor.dart';
 class PersonaModelo {
   @primaryKey
   late int id=0;
-  late int dni;
+  late String dni;
   late String codigo;
   late String nombre;
   @ColumnInfo(name: "apellido_paterno")

@@ -8,6 +8,7 @@ import 'package:servicio_asistencia/ui/administrador/facultad/facultad_edit.dart
 import 'package:servicio_asistencia/ui/administrador/facultad/facultad_form.dart';
 import 'package:servicio_asistencia/models/facultad/FacultadModelo.dart';
 import 'package:servicio_asistencia/theme/AppTheme.dart';
+import 'package:servicio_asistencia/ui/administrador/facultad/scanerqr.dart';
 import 'package:servicio_asistencia/ui/help_screen.dart';
 
 class MainFacultadF extends StatelessWidget {
@@ -193,6 +194,18 @@ class _FacultadUIState extends State<FacultadUI> {
                                   );
                                 }
                               });
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.qr_code),
+                            color: AppTheme.themeData.colorScheme.primary,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>  MyCustomWidget(),
+                                ),
+                              ).then(onGoBack);
                             },
                           ),
                         ],
